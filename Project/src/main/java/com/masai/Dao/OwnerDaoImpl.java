@@ -1,6 +1,7 @@
 package com.masai.Dao;
 
 import java.util.List;
+import java.util.Set;import java.util.stream.Collectors;
 
 import com.masai.Entity.LoggedInUserId;
 import com.masai.Entity.Owner;
@@ -22,8 +23,13 @@ public class OwnerDaoImpl implements OwnerDao{
 		EntityTransaction et=null;
 		try{
 			em=EMUtils.getManager();
-			et=em.getTransaction();
+			Owner find = em.find(Owner.class, owner.getUsername());
+			if(find!=null) {
+				throw new SomethingWentWrongEx("Username Already Present");
+			}
 			
+			et=em.getTransaction();
+
 			et.begin();
 			em.persist(owner);
 			et.commit();
@@ -41,38 +47,85 @@ public class OwnerDaoImpl implements OwnerDao{
 		try {
 		em=EMUtils.getManager();
 		Owner owner = em.find(Owner.class,uname);
-		if(owner!=null) {
-			throw new SomethingWentWrongEx("Username Already Present");
+		if(owner==null) {
+			throw new NoRecordFoundEx("No Record Found for username");
 		}
-		LoggedInUserId.user=uname;
+		
+		if(owner.getPassword().equals(pwd)) {
+			LoggedInUserId.user=owner.getUsername();
+		}else {
+			throw new SomethingWentWrongEx("Wrong username or password");
+		}
 		
 		}catch(IllegalArgumentException  e) {
 			throw new SomethingWentWrongEx("Something went wrong");
 		}
 		
+		em.close();
+		
 	}
 
 	@Override
-	public void addProperty(Property property) throws SomethingWentWrongEx, NoRecordFoundEx {
-		// TODO Auto-generated method stub
-		
+	public void addProperty(String location,double amount,int badroom) throws SomethingWentWrongEx, NoRecordFoundEx {
+		EntityManager em=null;
+		EntityTransaction et=null;
+		try{
+			em=EMUtils.getManager();
+			Owner owner = em.find(Owner.class,LoggedInUserId.user);
+			
+			Property prop=new Property(location,amount,badroom,owner);
+			et=em.getTransaction();
+
+			et.begin();
+			em.persist(prop);
+			et.commit();
+		}catch(IllegalStateException | IllegalArgumentException  e) {
+			et.rollback();
+			e.printStackTrace();
+		}
+		em.close();
 	}
 
 	@Override
 	public void updateProperty(int proId, String location, double amount) throws SomethingWentWrongEx, NoRecordFoundEx {
-		// TODO Auto-generated method stub
-		
+		EntityManager em=null;
+		EntityTransaction et=null;
+		try{
+			em=EMUtils.getManager();
+			
+			Query query = em.createQuery("FROM Property p WHERE p.propertyId=:id AND p.owner.username=:un");
+			query.setParameter("id", proId);
+			query.setParameter("un", LoggedInUserId.user);
+			
+			List<Property> list= query.getResultList();
+			System.out.println(list);
+			
+			
+		}catch(IllegalStateException | IllegalArgumentException  e) {
+			e.printStackTrace();
+		}
+		em.close();
 	}
 
 	@Override
 	public List<Tenant> getListRenter() throws SomethingWentWrongEx, NoRecordFoundEx {
-		// TODO Auto-generated method stub
-		return null;
+		List<Tenant> list=null;
+		EntityManager em=null;
+		try{
+			em=EMUtils.getManager();
+			Owner owner = em.find(Owner.class, LoggedInUserId.user);
+			Set<Property> properties = owner.getProperties();
+			list = properties.stream().filter(p->p.getTenant()!=null).map(p->p.getTenant()).toList();
+			
+		}catch(IllegalArgumentException  e) {
+			throw new SomethingWentWrongEx("Something went wrong");
+		}
+		
+		return list;
 	}
 
 	@Override
 	public void acceptOffer(int offerid) throws SomethingWentWrongEx, NoRecordFoundEx {
-		// TODO Auto-generated method stub
 		
 	}
 
