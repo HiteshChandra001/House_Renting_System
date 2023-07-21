@@ -18,8 +18,7 @@ public class TenantDaoImpl implements TenantDao{
 
 	@Override
 	public void login(String uname, String pwd) throws SomethingWentWrongEx, NoRecordFoundEx {
-		// TODO Auto-generated method stub
-		
+		// TODO Auto-generated method 
 	}
 
 	@Override
