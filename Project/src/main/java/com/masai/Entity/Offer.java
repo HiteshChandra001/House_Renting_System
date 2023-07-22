@@ -20,7 +20,7 @@ public class Offer {
 	
 	@ManyToOne
 	@JoinColumn(name="tenantId",nullable=false)
-	private Tenant renter;
+	private Tenant tenant;
 	
 	@Column(nullable=false)
 	private double offerAmount;
@@ -34,7 +34,7 @@ public class Offer {
 	public Offer(Property property, Tenant renter, double offerAmount) {
 		super();
 		this.property = property;
-		this.renter = renter;
+		this.tenant = renter;
 		this.offerAmount = offerAmount;
 		this.status="pending";
 	}
@@ -51,12 +51,12 @@ public class Offer {
 		this.property = property;
 	}
 
-	public Tenant getRenter() {
-		return renter;
+	public Tenant getTenant() {
+		return tenant;
 	}
 
-	public void setRenter(Tenant renter) {
-		this.renter = renter;
+	public void setTenant(Tenant tenant) {
+		this.tenant = tenant;
 	}
 
 	public double getOfferAmount() {
@@ -74,8 +74,5 @@ public class Offer {
 	public void setStatus(String status) {
 		this.status = status;
 	}
-	
-	
-	
-	
+
 }

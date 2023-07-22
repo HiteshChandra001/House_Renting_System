@@ -5,8 +5,7 @@ import java.util.Set;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 
@@ -18,7 +17,7 @@ public class Owner {
 	private String fullName;
 	private String contantInfo;
 	
-	@OneToMany(mappedBy="propertyId",cascade=CascadeType.ALL)
+	@OneToMany(mappedBy="owner",cascade=CascadeType.ALL,fetch =FetchType.LAZY)
 	private Set<Property> properties;
 	
 	public Owner() {
@@ -71,6 +70,5 @@ public class Owner {
 		this.properties = properties;
 	}
 
-	
 		
 }
