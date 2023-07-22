@@ -1,5 +1,6 @@
 package com.masai.Entity;
 
+<<<<<<< HEAD
 import java.util.HashSet;
 import java.util.Set;
 
@@ -8,6 +9,11 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 
+=======
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+
+>>>>>>> de74c1fde4168dd12738087e8e355d2e94290cfa
 @Entity
 public class Tenant {
 	@Id
