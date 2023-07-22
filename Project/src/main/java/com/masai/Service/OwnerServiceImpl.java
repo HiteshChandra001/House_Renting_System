@@ -25,6 +25,20 @@ public class OwnerServiceImpl implements OwnerService{
 	}
 
 	@Override
+<<<<<<< HEAD
+	public void addProperty(String location,double amount,int rooms) throws SomethingWentWrongEx, NoRecordFoundEx {
+		dao.addProperty( location, amount, rooms);
+	}
+
+	@Override
+	public void updateProperty(int proId, String location, double amount,int room) throws SomethingWentWrongEx, NoRecordFoundEx {
+		dao.updateProperty(proId, location, amount, room);
+	}
+
+	@Override
+	public void getListProperty() throws SomethingWentWrongEx, NoRecordFoundEx {
+		 dao.getListProperty();
+=======
 	public void addProperty(String location, double amount, int badroom) throws SomethingWentWrongEx, NoRecordFoundEx {
 		dao.addProperty(location, amount, badroom);
 	}
@@ -37,12 +51,23 @@ public class OwnerServiceImpl implements OwnerService{
 	@Override
 	public List<Tenant> getListRenter() throws SomethingWentWrongEx, NoRecordFoundEx {
 		return dao.getListRenter();
+>>>>>>> de74c1fde4168dd12738087e8e355d2e94290cfa
 	}
 
 	@Override
 	public void acceptOffer(int offerid) throws SomethingWentWrongEx, NoRecordFoundEx {
-		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public List<Tenant> getListTenant() throws SomethingWentWrongEx, NoRecordFoundEx {
+//		List<Property> list= dao.getListProperty();
+//		
+//		List<Tenant> res = list.stream().filter(p->p.getTenant()!=null).map(p->p.getTenant()).toList();
+//		if(res.size()==0) {
+//			throw new NoRecordFoundEx("No Record Found");
+//		}
+		return  null;
 	}
 
 }

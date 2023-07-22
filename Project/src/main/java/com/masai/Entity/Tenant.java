@@ -1,8 +1,19 @@
 package com.masai.Entity;
 
+<<<<<<< HEAD
+import java.util.HashSet;
+import java.util.Set;
+
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+
+=======
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 
+>>>>>>> de74c1fde4168dd12738087e8e355d2e94290cfa
 @Entity
 public class Tenant {
 	@Id
@@ -10,6 +21,13 @@ public class Tenant {
 	private String password;
 	private String fullName;
 	private String contactInfo;
+	
+	@OneToMany(mappedBy="propertyId",cascade=CascadeType.ALL)
+	private Set<Property> properties;
+	
+	@OneToMany(mappedBy="offerId",cascade=CascadeType.ALL)
+	private Set<Offer> offers;
+	
 	public Tenant() {
 		super();
 	}
@@ -19,6 +37,9 @@ public class Tenant {
 		this.password = password;
 		this.fullName = fullName;
 		this.contactInfo = contactInfo;
+		this.properties=new HashSet<>();
+		this.offers=new HashSet<>();
+		
 	}
 	
 	public String getUserName() {
@@ -43,6 +64,23 @@ public class Tenant {
 	public void setContactInfo(String contactInfo) {
 		this.contactInfo = contactInfo;
 	}
+	
+	
+	public Set<Property> getProperties() {
+		return properties;
+	}
+	public void setProperties(Set<Property> properties) {
+		this.properties = properties;
+	}
+	
+	
+	public Set<Offer> getOffers() {
+		return offers;
+	}
+	public void setOffers(Set<Offer> offers) {
+		this.offers = offers;
+	}
+
 	
 	
 }

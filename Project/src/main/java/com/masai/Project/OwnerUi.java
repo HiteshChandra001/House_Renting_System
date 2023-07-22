@@ -15,19 +15,101 @@ import com.masai.Service.OwnerServiceImpl;
 public class OwnerUi {
 
 	static OwnerService serv=new OwnerServiceImpl();
+<<<<<<< HEAD
+	
+=======
+>>>>>>> de74c1fde4168dd12738087e8e355d2e94290cfa
 	static void registration(Scanner sc) {
+		
+		System.out.println("+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-++-++-++-+-+-+-+-+-+-+-+-+-+-+-+-");
 		System.out.println("ENter Username");
 		String un=sc.next();
 		System.out.println("Enter Password");
 		String pwd=sc.next();
+		sc.nextLine();
 		System.out.println("Enter FullName");
-		String fn=sc.next();
+		String fn=sc.nextLine();
 		System.out.println("Enter Contact ");
 		String con=sc.next();
 		
 		Owner owner=new Owner(un,pwd,fn,con);
+		try {
+			serv.register(owner);
+		} catch (SomethingWentWrongEx e) {
+			e.printStackTrace();
+		}
+	}
+	
+	static void login(Scanner sc) {
+
+		System.out.println("+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-++-++-++-+-+-+-+-+-+-+-+-+-+-+-+-");
+		System.out.println("ENter Username");
+		String un=sc.next();
+		System.out.println("Enter Password");
+		String pwd=sc.next();
 		
 		try {
+<<<<<<< HEAD
+			serv.login(un, pwd);
+			OwnerMenu(sc);
+		} catch (SomethingWentWrongEx | NoRecordFoundEx e) {
+			e.printStackTrace();
+		}
+	}
+	
+	static void OwnerMenu(Scanner sc) {
+		
+
+		System.out.println("=========================================================");
+		
+		int sel=0;
+    	do {
+    		System.out.println("1 : Add Property");
+    		System.out.println("2 : Update Property");
+    		System.out.println("3 : Get Property List");
+    		System.out.println("4 : Get Tenant List");
+    		System.out.println("0 : LOG OUT");
+    		System.out.print("Enter Selection : ");
+    		sel = sc.nextInt();
+    		
+    		switch(sel) {
+			case 1:
+				addProperty(sc);
+				break;
+			case 2:
+				updateProperty(sc);
+				break;
+			case 3:
+				getPropertyList();
+				break;
+			case 4:
+				getTenantList();
+				break;
+			case 0:
+				LoggedInUserId.user=null;
+				System.out.println("Logout Successfull");
+				break;
+			default:
+				System.out.println("Invalid Selection, try again");
+		}
+    	}while(sel!=0);
+    	
+	}
+	
+	static void addProperty(Scanner sc) {
+
+		System.out.println("+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-++-++-++-+-+-+-+-+-+-+-+-+-+-+-+-");
+		
+		System.out.println("Enter Location");
+		String loc=sc.next();
+		System.out.println("Enter amount");
+		double amount=sc.nextDouble();
+		System.out.println("Enter no. of Bedrooms");
+		int room=sc.nextInt();
+		
+		try {
+			serv.addProperty(loc, amount, room);
+=======
 			serv.register(owner);
 		} catch (SomethingWentWrongEx e) {
 			e.printStackTrace();
@@ -89,6 +171,7 @@ public class OwnerUi {
 		
 		try {
 			serv.addProperty(loc, amount, num);
+>>>>>>> de74c1fde4168dd12738087e8e355d2e94290cfa
 		} catch (SomethingWentWrongEx | NoRecordFoundEx e) {
 			e.printStackTrace();
 		}
@@ -96,6 +179,46 @@ public class OwnerUi {
 	}
 	
 	static void updateProperty(Scanner sc) {
+<<<<<<< HEAD
+		System.out.println("+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-++-++-++-+-+-+-+-+-+-+-+-+-+-+-+-");
+		
+		System.out.println("Enter Property Id");
+		int id=sc.nextInt();
+		System.out.println("Enter Location");
+		String loc=sc.next();
+		System.out.println("Enter amount");
+		double amount=sc.nextDouble();
+		System.out.println("Enter no of Rooms");
+		int room=sc.nextInt();
+		
+		try {
+			serv.updateProperty(id,loc, amount,room);
+		} catch (SomethingWentWrongEx | NoRecordFoundEx e) {
+			e.printStackTrace();
+		}
+		
+	}
+	
+	static void getPropertyList() {
+		System.out.println("+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-++-++-++-+-+-+-+-+-+-+-+-+-+-+-+-");
+		
+		try {
+			serv.getListProperty();
+		} catch (SomethingWentWrongEx | NoRecordFoundEx e) {
+			e.printStackTrace();
+		}	
+	}
+	 
+	static void getTenantList() {
+		System.out.println("+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-++-++-++-+-+-+-+-+-+-+-+-+-+-+-+-");
+		
+		try {
+			List<Tenant> list = serv.getListTenant();
+			for(Tenant p:list) {
+				System.out.println("+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-++-++-++-+-+-+-+-+-+-+-+-+-+-+-+-");
+				System.out.println(p.getUserName()+"		"+p.getFullName()+"		"+p.getContactInfo());
+			}
+=======
 		System.out.println("Enter Property Id");
 		int id=sc.nextInt();
 		System.out.println("Enter location");
@@ -115,11 +238,15 @@ public class OwnerUi {
 			List<Tenant> list = serv.getListRenter();
 			list.forEach(p->p.getFullName());
 			
+>>>>>>> de74c1fde4168dd12738087e8e355d2e94290cfa
 		} catch (SomethingWentWrongEx | NoRecordFoundEx e) {
 			e.printStackTrace();
 		}
 	}
+<<<<<<< HEAD
+=======
 	
 	
 	
+>>>>>>> de74c1fde4168dd12738087e8e355d2e94290cfa
 }
