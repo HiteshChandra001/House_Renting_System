@@ -6,7 +6,7 @@ public class App {
 	
     public static void main( String[] args ) {
     	Scanner sc=new Scanner(System.in);
-    	int sel=0;
+    	int choice=0;
     	do {
     		System.out.println("=========================================================");
     		System.out.println("1 : Owner Registration");
@@ -15,15 +15,10 @@ public class App {
     		System.out.println("4 : Tenant Login");
     		System.out.println("0 : Exit");
     		System.out.print("Enter Selection : ");
-<<<<<<< HEAD
     		choice = sc.nextInt();
 
     		switch(choice) {
-=======
-    		sel = sc.nextInt();
-    		
-    		switch(sel) {
->>>>>>> de74c1fde4168dd12738087e8e355d2e94290cfa
+
 			case 1:
 				OwnerUi.registration(sc);
 				break;
@@ -42,7 +37,7 @@ public class App {
 			default:
 				System.out.println("Invalid Selection, try again");
 		}
-    	}while(sel!=0);
+    	}while(choice!=0);
         
     	sc.close();
     }
