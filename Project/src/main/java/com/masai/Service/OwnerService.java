@@ -12,17 +12,12 @@ public interface OwnerService {
 
 	void register(Owner landlord)throws SomethingWentWrongEx;
 	void login(String uname,String pwd)throws SomethingWentWrongEx,NoRecordFoundEx;
-<<<<<<< HEAD
 	void addProperty(String location,double amount,int rooms)throws SomethingWentWrongEx,NoRecordFoundEx;
 	void updateProperty(int proId,String location,double amount,int room)throws SomethingWentWrongEx,NoRecordFoundEx;
 	void getListProperty()throws SomethingWentWrongEx,NoRecordFoundEx;
 	List<Tenant> getListTenant()throws SomethingWentWrongEx,NoRecordFoundEx;
 	
-=======
-	void addProperty(String location,double amount,int badroom)throws SomethingWentWrongEx,NoRecordFoundEx;
-	void updateProperty(int proId,String location,double amount)throws SomethingWentWrongEx,NoRecordFoundEx;
-	List<Tenant> getListRenter()throws SomethingWentWrongEx,NoRecordFoundEx;
->>>>>>> de74c1fde4168dd12738087e8e355d2e94290cfa
+
 	void acceptOffer(int offerid)throws SomethingWentWrongEx,NoRecordFoundEx;
 
 }

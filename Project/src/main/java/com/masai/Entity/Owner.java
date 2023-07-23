@@ -6,11 +6,6 @@ import java.util.Set;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
-<<<<<<< HEAD
-=======
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
->>>>>>> de74c1fde4168dd12738087e8e355d2e94290cfa
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 
@@ -22,11 +17,7 @@ public class Owner {
 	private String fullName;
 	private String contantInfo;
 	
-<<<<<<< HEAD
 	@OneToMany(mappedBy="owner",cascade=CascadeType.ALL,fetch =FetchType.LAZY)
-=======
-	@OneToMany(mappedBy="propertyId",cascade=CascadeType.ALL,fetch=FetchType.EAGER)
->>>>>>> de74c1fde4168dd12738087e8e355d2e94290cfa
 	private Set<Property> properties;
 	
 	public Owner() {
@@ -79,15 +70,5 @@ public class Owner {
 		this.properties = properties;
 	}
 
-<<<<<<< HEAD
-=======
-	@Override
-	public String toString() {
-		return "Owner [username=" + username + ", fullName=" + fullName + ", contantInfo=" + contantInfo + "]";
-	}
-
-
-	
->>>>>>> de74c1fde4168dd12738087e8e355d2e94290cfa
 		
 }

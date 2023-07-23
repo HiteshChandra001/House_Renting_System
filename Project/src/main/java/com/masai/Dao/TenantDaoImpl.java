@@ -41,7 +41,7 @@ public class TenantDaoImpl implements TenantDao{
 
 	@Override
 	public void login(String uname, String pwd) throws SomethingWentWrongEx, NoRecordFoundEx {
-<<<<<<< HEAD
+
 		EntityManager em=null;
 		
 		try {
@@ -60,9 +60,6 @@ public class TenantDaoImpl implements TenantDao{
 		}
 		
 		em.close();
-=======
-		// TODO Auto-generated method 
->>>>>>> de74c1fde4168dd12738087e8e355d2e94290cfa
 	}
 
 	@Override
