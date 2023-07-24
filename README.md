@@ -36,9 +36,8 @@ Log out from the tenant account
 This app has been created by using JPA and not any specific ORM framework. Hence only a relational database can be used to store the data.
 <br>
 ER Diagram:
-<img src="https://i.imgur.com/vqPPCmL.png">
-## UI Flowchart
-<img src="https://i.imgur.com/wLijYeE.png">
+<img https://imgur.com/a/lPtdeq4">
+
 
 ## Authentication:
 Every service that this app provides, requires password for authentication.
