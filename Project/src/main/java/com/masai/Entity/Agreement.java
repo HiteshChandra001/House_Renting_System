@@ -19,9 +19,6 @@ public class Agreement {
 	@OneToOne
 	private Tenant tenant;
 	
-	@OneToOne
-	private Owner owner;
-	
 	private double amount;
 	
 	public Agreement() {

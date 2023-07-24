@@ -42,18 +42,17 @@ public class OwnerServiceImpl implements OwnerService{
 
 	@Override
 	public void acceptOffer(int offerid) throws SomethingWentWrongEx, NoRecordFoundEx {
-		
+		dao.acceptOffer(offerid);
 	}
 
 	@Override
-	public List<Tenant> getListTenant() throws SomethingWentWrongEx, NoRecordFoundEx {
-//		List<Property> list= dao.getListProperty();
-//		
-//		List<Tenant> res = list.stream().filter(p->p.getTenant()!=null).map(p->p.getTenant()).toList();
-//		if(res.size()==0) {
-//			throw new NoRecordFoundEx("No Record Found");
-//		}
-		return  null;
+	public void showOfferList(int propId) throws SomethingWentWrongEx, NoRecordFoundEx {
+		dao.showOfferList(propId);
+	}
+
+	@Override
+	public void showmyAgreements() throws SomethingWentWrongEx, NoRecordFoundEx {
+		dao.showmyAgreements();
 	}
 
 }

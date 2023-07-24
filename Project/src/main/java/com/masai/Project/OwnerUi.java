@@ -32,6 +32,7 @@ public class OwnerUi {
 		Owner owner=new Owner(un,pwd,fn,con);
 		try {
 			serv.register(owner);
+			System.out.println("Owner Registered SUccessfully");
 		} catch (SomethingWentWrongEx e) {
 			e.printStackTrace();
 		}
@@ -47,6 +48,8 @@ public class OwnerUi {
 		
 		try {
 			serv.login(un, pwd);
+
+			System.out.println("Logged in SUccessfully");
 			OwnerMenu(sc);
 		} catch (SomethingWentWrongEx | NoRecordFoundEx e) {
 			e.printStackTrace();
@@ -63,7 +66,10 @@ public class OwnerUi {
     		System.out.println("1 : Add Property");
     		System.out.println("2 : Update Property");
     		System.out.println("3 : Get Property List");
-    		System.out.println("4 : Get Tenant List");
+    		System.out.println("4 : Get Agreemets List");
+    		System.out.println("5 : show offer list of property");
+    		System.out.println("6 : Accept Offer");
+    		
     		System.out.println("0 : LOG OUT");
     		System.out.print("Enter Selection : ");
     		sel = sc.nextInt();
@@ -79,7 +85,13 @@ public class OwnerUi {
 				getPropertyList();
 				break;
 			case 4:
-				getTenantList();
+				showmyAgreements();
+				break;
+			case 5:
+				showOfferList(sc);
+				break;
+			case 6:
+				acceptOffer(sc);
 				break;
 			case 0:
 				LoggedInUserId.user=null;
@@ -105,6 +117,7 @@ public class OwnerUi {
 		
 		try {
 			serv.addProperty(loc, amount, room);
+			System.out.println("Property Added SUccessfully");
 		} catch (SomethingWentWrongEx | NoRecordFoundEx e) {
 			e.printStackTrace();
 		}
@@ -125,6 +138,8 @@ public class OwnerUi {
 		
 		try {
 			serv.updateProperty(id,loc, amount,room);
+
+			System.out.println("Property updated SUccessfully");
 		} catch (SomethingWentWrongEx | NoRecordFoundEx e) {
 			e.printStackTrace();
 		}
@@ -132,27 +147,51 @@ public class OwnerUi {
 	}
 	
 	static void getPropertyList() {
+		System.out.println("My Properties list :-");
 		System.out.println("+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-++-++-++-+-+-+-+-+-+-+-+-+-+-+-+-");
-		
+	
 		try {
 			serv.getListProperty();
 		} catch (SomethingWentWrongEx | NoRecordFoundEx e) {
 			e.printStackTrace();
 		}	
 	}
+	
+	static void showOfferList(Scanner sc) {
+		System.out.println("enter property id");
+		System.out.println("+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-++-++-++-+-+-+-+-+-+-+-+-+-+-+-+-");
+	
+		int id=sc.nextInt();
+		System.out.println(" Offers list :-");
+		try {
+			serv.showOfferList(id);
+		} catch (SomethingWentWrongEx | NoRecordFoundEx e) {
+			e.printStackTrace();
+		}	
+	}
 	 
-	static void getTenantList() {
+	static void showmyAgreements() {
+		System.out.println("Agreement list :-");
 		System.out.println("+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-++-++-++-+-+-+-+-+-+-+-+-+-+-+-+-");
 		
 		try {
-			List<Tenant> list = serv.getListTenant();
-			for(Tenant p:list) {
-				System.out.println("+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-++-++-++-+-+-+-+-+-+-+-+-+-+-+-+-");
-				System.out.println(p.getUserName()+"		"+p.getFullName()+"		"+p.getContactInfo());
-			}
+			serv.showmyAgreements();
 		} catch (SomethingWentWrongEx | NoRecordFoundEx e) {
 			e.printStackTrace();
 		}
 	}
 
+	static void acceptOffer(Scanner sc) {
+		System.out.println("Enter offerid");
+		int id=sc.nextInt();
+		
+		try {
+			serv.acceptOffer(id);
+			System.out.println("Offer accepted Successfully");
+		} catch (SomethingWentWrongEx | NoRecordFoundEx e) {
+			e.printStackTrace();
+		}
+	}
+	
+	
 }

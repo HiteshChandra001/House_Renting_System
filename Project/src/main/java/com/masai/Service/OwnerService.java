@@ -15,8 +15,9 @@ public interface OwnerService {
 	void addProperty(String location,double amount,int rooms)throws SomethingWentWrongEx,NoRecordFoundEx;
 	void updateProperty(int proId,String location,double amount,int room)throws SomethingWentWrongEx,NoRecordFoundEx;
 	void getListProperty()throws SomethingWentWrongEx,NoRecordFoundEx;
-	List<Tenant> getListTenant()throws SomethingWentWrongEx,NoRecordFoundEx;
 	
+	void showOfferList(int propId)throws SomethingWentWrongEx,NoRecordFoundEx;
+	void showmyAgreements()throws SomethingWentWrongEx,NoRecordFoundEx;
 
 	void acceptOffer(int offerid)throws SomethingWentWrongEx,NoRecordFoundEx;
 

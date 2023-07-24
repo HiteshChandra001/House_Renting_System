@@ -23,6 +23,7 @@ static TenantService serv=new TenantServiceImpl();
 		String un=sc.next();
 		System.out.println("Enter Password");
 		String pwd=sc.next();
+		sc.nextLine();
 		System.out.println("Enter FullName");
 		String fn=sc.nextLine();
 		System.out.println("Enter Contact ");
@@ -62,6 +63,7 @@ static TenantService serv=new TenantServiceImpl();
     		System.out.println("2 : give offer");
     		System.out.println("3 : Get offer List");
     		System.out.println("4 : Get offer status");
+    		System.out.println("5 : Show my agreements");
     		System.out.println("0 : LOG OUT");
     		System.out.print("Enter Selection : ");
     		sel = sc.nextInt();
@@ -79,6 +81,9 @@ static TenantService serv=new TenantServiceImpl();
 			case 4:
 				getStatus(sc);
 				break;
+			case 5:
+				showAgreements();
+				break;
 			case 0:
 				LoggedInUserId.user=null;
 				System.out.println("Logout Successfully");
@@ -93,13 +98,8 @@ static TenantService serv=new TenantServiceImpl();
 		System.out.println("+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-++-++-++-+-+-+-+-+-+-+-+-+-+-+-+-");
 		
 		try {
-			List<Property> list = serv.getListProperty();
-			for(Property p:list) {
-				System.out.println("+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-++-++-++-+-+-+-+-+-+-+-+-+-+-+-+-");
-				System.out.println(p.getPropertyId()+"		"+p.getAvailability()+"		"+p.getAmount()	);
-				System.out.println(p.getLocation()+"		"+p.getBedrooms());
-				System.out.println(p.getOwner().getUsername()+"		"+p.getOwner().getFullName()+"		"+p.getOwner().getContantInfo());
-			}
+			 serv.getListProperty();
+			
 		} catch (SomethingWentWrongEx | NoRecordFoundEx e) {
 			e.printStackTrace();
 		}
@@ -125,11 +125,7 @@ static TenantService serv=new TenantServiceImpl();
 		System.out.println("+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-++-++-++-+-+-+-+-+-+-+-+-+-+-+-+-");
 		
 		try {
-			List<Offer> list = serv.getListOffer();
-			for(Offer p:list) {
-				System.out.println("+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-++-++-++-+-+-+-+-+-+-+-+-+-+-+-+-");
-				System.out.println(p.getOfferId()+"		"+p.getStatus()+"		"+p.getOfferAmount()	);
-				}
+			 serv.getListOffer();
 		} catch (SomethingWentWrongEx | NoRecordFoundEx e) {
 			e.printStackTrace();
 		}
@@ -145,9 +141,18 @@ static TenantService serv=new TenantServiceImpl();
 			Offer p = serv.getOfferStatus(id);
 			System.out.println("+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-++-++-++-+-+-+-+-+-+-+-+-+-+-+-+-");
 			
-			System.out.println(p.getOfferId()+"		"+p.getStatus()+"		"+p.getOfferAmount()	);
+			System.out.println("offerid: "+p.getOfferId()+"		"+"status: "+p.getStatus()+"		"+"myOffer"+p.getOfferAmount()	);
 			
 		} catch (SomethingWentWrongEx | NoRecordFoundEx e) {
+			e.printStackTrace();
+		}
+	}
+	
+	static void showAgreements() {
+		try {
+			serv.showmyAgreements();
+		} catch (SomethingWentWrongEx | NoRecordFoundEx e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

@@ -32,8 +32,7 @@ public class Tenant {
 		this.fullName = fullName;
 		this.contactInfo = contactInfo;
 		this.properties=new HashSet<>();
-		this.offers=new HashSet<>();
-		
+		this.offers=new HashSet<>();	
 	}
 	
 	public String getUserName() {

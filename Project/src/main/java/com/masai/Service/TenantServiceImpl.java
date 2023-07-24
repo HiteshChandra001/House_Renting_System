@@ -25,15 +25,15 @@ public class TenantServiceImpl implements TenantService{
 	}
 
 	@Override
-	public List<Property> getListProperty() throws SomethingWentWrongEx, NoRecordFoundEx {
-		return dao.getListProperty();
+	public void getListProperty() throws SomethingWentWrongEx, NoRecordFoundEx {
+		 dao.getListProperty();
 	}
 
 	
 
 	@Override
-	public List<Offer> getListOffer() throws SomethingWentWrongEx, NoRecordFoundEx {
-		return dao.getListOffer();
+	public void getListOffer() throws SomethingWentWrongEx, NoRecordFoundEx {
+		 dao.getListOffer();
 	}
 
 	@Override
@@ -44,6 +44,11 @@ public class TenantServiceImpl implements TenantService{
 	@Override
 	public void giveOffer(int propId, double amount) throws SomethingWentWrongEx, NoRecordFoundEx {
 		dao.giveOffer(propId, amount);
+	}
+
+	@Override
+	public void showmyAgreements() throws SomethingWentWrongEx, NoRecordFoundEx {
+		dao.showmyAgreements();
 	}
 
 }

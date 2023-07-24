@@ -32,11 +32,8 @@ public class Property {
 	@JoinColumn(name="owner")
 	private Owner owner;
 	
-	
-	
 	@OneToMany(mappedBy="offerId",cascade=CascadeType.ALL)
 	private Set<Offer> offers;
-	
 	
 	public Property() {
 		super();
@@ -98,6 +95,10 @@ public class Property {
 	}
 	public void setOffers(Set<Offer> offers) {
 		this.offers = offers;
+	}
+	@Override
+	public String toString() {
+		return "propertyId: " + propertyId + "		"+"location: " + location +"		";
 	}
 	
 	
