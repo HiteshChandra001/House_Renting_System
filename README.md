@@ -1,6 +1,6 @@
 # volatile-wilderness-1112
 # project_name : **RentoMania**
-
+* [Demo video](https://drive.google.com/file/d/1wEn5HMC5vZHn4_NxdrEVzlbzl3l-n2TB/view?usp=drive_link)
 RentoMania (House Renting System) is a software solution designed to simplify the process of renting houses for both owners and tenants. The system provides a command-line interface for owners to manage their properties and for tenants to search for available houses, make rental offers, and track the status of their offers. The system aims to streamline the house renting process and provide a convenient platform for both owners and tenants.
 
 
